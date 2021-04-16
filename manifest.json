@@ -20,14 +20,10 @@
   "description": "",
   "manifest_version": 2,
   "name": "text2link",
-  "options_ui": {
-    "page": "options.html"
-  },
   "permissions": [
     "menus",
-    "activeTab",
     "tabs",
     "storage"
   ],
-  "version": "0.1.0"
+  "version": "0.2.0"
 }
