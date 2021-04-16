@@ -21,10 +21,11 @@ function createTableRow(feed) {
 			tr.insertCell().appendChild(input);
 
 		}else if( key === 'name'){
+			//var input = document.createElement('textarea');
 			var input = document.createElement('input');
 			input.className = key;
 			input.placeholder = key;
-			input.style.width = '100%';
+			input.style.width = 'auto';
 			input.value = feed[key];
 			tr.insertCell().appendChild(input);
 		}else
@@ -40,7 +41,7 @@ function createTableRow(feed) {
 
 	var button;
 	if(feed.action === 'save'){
-		button = createButton("Create", "saveButton", function() {}, true );
+		button = createButton("Save", "saveButton", function() {}, true );
 	}else{
 		button = createButton("Delete", "deleteButton", function() { deleteRow(tr); }, false );
 	}
@@ -54,12 +55,17 @@ function collectConfig() {
 	for (var row = 0; row < mainTableBody.rows.length; row++) { 
 		try {
 			var name = mainTableBody.rows[row].querySelector('.name').value.trim().toLowerCase();
+			try {
+				new URL(name);
 			var activ = mainTableBody.rows[row].querySelector('.activ').checked;
-			if(name !== '' &&  name.indexOf(" ") === -1 && name.length > 1 && name !== 'http' && name !== 'https') {
+			if(name !== '' &&  name.indexOf(" ") === -1 && name.length > 1) {
 				feeds.push({
 					'activ': activ,
 					'name': name
 				});
+			}
+			}catch(e) {
+				console.error(e);
 			}
 		}catch(e){
 			console.error(e);
@@ -94,7 +100,7 @@ async function saveOptions(e) {
 async function restoreOptions() {
 	var mainTableBody = document.getElementById('mainTableBody');
 	createTableRow({
-		'activ': 1,
+		'activ': false,
 		'name': '' ,
 		'action':'save'
 	});
@@ -109,6 +115,7 @@ async function restoreOptions() {
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
 
+/*
 const impbtnWrp = document.getElementById('impbtn_wrapper');
 const impbtn = document.getElementById('impbtn');
 const expbtn = document.getElementById('expbtn');
@@ -130,10 +137,13 @@ expbtn.addEventListener('click', async function (evt) {
 
 // delegate to real Import Button which is a file selector
 impbtnWrp.addEventListener('click', function(evt) {
+	console.log('impbtnWrp');
 	impbtn.click();
 })
 
 impbtn.addEventListener('input', function (evt) {
+
+	console.log('impbtn');
 	
 	var file  = this.files[0];
 
@@ -153,3 +163,4 @@ impbtn.addEventListener('input', function (evt) {
         reader.readAsText(file);
 
 });
+*/
