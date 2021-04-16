@@ -9,15 +9,7 @@
 	  "default_title": "linkt2tab",
 	  "default_popup": "popup.html"
   },
-  "commands": {
-    "toggle-feature": {
-      "suggested_key": {
-        "default": "F6"
-      },
-      "description": "Send a 'toggle-feature' event"
-    }
-  },
-  "description": "",
+  "description": "Open Tabs with placeholder URLs and text selection",
   "manifest_version": 2,
   "name": "OpenWithSelection",
   "permissions": [
@@ -25,5 +17,5 @@
     "tabs",
     "storage"
   ],
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
