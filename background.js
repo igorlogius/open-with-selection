@@ -20,7 +20,7 @@ function onCreated() {
 	} 
 }
 
-function onMenuClicked(clickData , tab) { 
+async function onMenuClicked(clickData , tab) { 
 	log('debug', 'onMenuClicked');
 	if ( typeof clickData.menuItemId !== 'string' ) { return; }
 	if ( !clickData.menuItemId.startsWith(extname) ) { return; }
@@ -29,8 +29,8 @@ function onMenuClicked(clickData , tab) {
 	let urlstr = clickData.menuItemId.replace(extname + " ", ''); 
 	urlstr = urlstr.replace("%s",clickData.selectionText);
 	try {
-		const url = new URL(urlstr);
-		browser.tabs.create({url: urlstr, active: false});
+		//const url = new URL(urlstr);
+		await browser.tabs.create({url: urlstr, active: false});
 	}catch(error) {
 		log('error',error);
 		return;
@@ -47,7 +47,7 @@ async function onMenuShow(info,tab) {
 		if(val.activ) {
 			if(typeof val.name !== 'string') {return;}
 			const menuId = extname + " " + val.name
-			const menuTitle = extname + ": '" + val.name + '"';
+			const menuTitle = "Open(WS): '" + val.name + '"';
 			browser.menus.create({   
 				id: menuId 
 				,title: menuTitle

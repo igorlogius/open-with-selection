@@ -7,7 +7,21 @@
   },
   "browser_action":  {
 	  "default_title": "linkt2tab",
-	  "default_popup": "popup.html"
+	  "default_popup": "settings.html"
+  },
+  "sidebar_action": {
+	  "default_panel": "settings.html",
+	  "open_at_install": true
+  },
+  "options_ui": {
+	  "page": "settings.html"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+O"
+      }
+    }
   },
   "description": "Open Tabs with placeholder URLs and text selection",
   "manifest_version": 2,
@@ -17,5 +31,5 @@
     "tabs",
     "storage"
   ],
-  "version": "0.2.1"
+  "version": "0.3.2"
 }

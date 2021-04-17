@@ -11,21 +11,28 @@ function createTableRow(feed) {
 	Object.keys(feed).sort().forEach( (key) => {
 
 		if( key === 'activ'){
-			var input = document.createElement('input');
-			input.className = key;
-			input.placeholder = key;
-			input.style.width = '100%';
-			input.type='radio';
-			input.name="placeholdergroup";
-			input.checked= (typeof feed[key] === 'boolean' && feed[key] === true)? true: false;
-			tr.insertCell().appendChild(input);
+			//if(feed[key] !== null) {
+				var input = document.createElement('input');
+				input.className = key;
+				input.placeholder = key;
+				input.style.width = '100%';
+				input.type='radio';
+				input.name="placeholdergroup";
+				input.checked= (typeof feed[key] === 'boolean' && feed[key] === true)? true: false;
+				input.addEventListener("change", saveOptions);
+				tr.insertCell().appendChild(input);
+			/*}else{
+				tr.insertCell();
+			}*/
 
 		}else if( key === 'name'){
 			//var input = document.createElement('textarea');
 			var input = document.createElement('input');
 			input.className = key;
 			input.placeholder = key;
-			input.style.width = 'auto';
+			input.style.float = 'right';
+			input.style.width = '90%';
+			input.style.margin = '3px';
 			input.value = feed[key];
 			tr.insertCell().appendChild(input);
 		}else
@@ -33,7 +40,7 @@ function createTableRow(feed) {
 				var input = document.createElement('input');
 				input.className = key;
 				input.placeholder = key;
-				input.style.width = '100%';
+				input.style.width = '0px';
 				input.value = feed[key];
 				tr.insertCell().appendChild(input);
 			}
@@ -41,9 +48,9 @@ function createTableRow(feed) {
 
 	var button;
 	if(feed.action === 'save'){
-		button = createButton("Save", "saveButton", function() {}, true );
+		button = createButton("Create", "saveButton", function() {},  true);
 	}else{
-		button = createButton("Delete", "deleteButton", function() { deleteRow(tr); }, false );
+		button = createButton("Delete", "deleteButton", function() { deleteRow(tr); }, true );
 	}
 	tr.insertCell().appendChild(button);
 }
@@ -56,7 +63,6 @@ function collectConfig() {
 		try {
 			var name = mainTableBody.rows[row].querySelector('.name').value.trim().toLowerCase();
 			try {
-				new URL(name);
 			var activ = mainTableBody.rows[row].querySelector('.activ').checked;
 			if(name !== '' &&  name.indexOf(" ") === -1 && name.length > 1) {
 				feeds.push({
@@ -100,7 +106,7 @@ async function saveOptions(e) {
 async function restoreOptions() {
 	var mainTableBody = document.getElementById('mainTableBody');
 	createTableRow({
-		'activ': false,
+		'activ': null,
 		'name': '' ,
 		'action':'save'
 	});
