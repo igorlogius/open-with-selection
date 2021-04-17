@@ -6,7 +6,7 @@
     ]
   },
   "browser_action":  {
-	  "default_title": "linkt2tab",
+	  "default_title": "OpenWithSelection",
 	  "default_popup": "settings.html"
   },
   "sidebar_action": {
