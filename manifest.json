@@ -6,7 +6,6 @@
     ]
   },
   "browser_action":  {
-	  "default_title": "OpenWithSelection",
 	  "default_popup": "settings.html"
   },
   "sidebar_action": {
@@ -26,13 +25,13 @@
   "icons": {
 	  "128": "icon.png"
   },
-  "description": "Open Tabs with placeholder URLs and text selection",
+  "description": "Open tabs with placeholder-URLs for selected text",
   "manifest_version": 2,
-  "name": "OpenWithSelection",
+  "name": "open-with-selection",
   "permissions": [
     "menus",
     "tabs",
     "storage"
   ],
-  "version": "0.3.3"
+  "version": "1.3.4"
 }
