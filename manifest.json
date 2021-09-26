@@ -10,7 +10,8 @@
   },
   "sidebar_action": {
 	  "default_panel": "settings.html",
-	  "open_at_install": true
+	  "open_at_install": true,
+	  "default_title": "Open With Selection"
   },
   "options_ui": {
 	  "page": "settings.html"
@@ -33,5 +34,5 @@
     "tabs",
     "storage"
   ],
-  "version": "1.3.5"
+  "version": "1.3.6"
 }
